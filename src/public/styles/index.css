@@ -1,0 +1,83 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #ff000d;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.custom-form .form-group {
+  margin-bottom: 15px;
+}
+
+.custom-form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.custom-form .form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.custom-form .btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.custom-form .btn:hover {
+  background-color: #0056b3;
+}
+
+.custom-form .btn:active,
+.custom-form .btn:focus {
+  outline: none;
+}
+
+.custom-form input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 10px;
+}
+
+.custom-form input[type="text"]:focus,
+.custom-form input[type="email"]:focus,
+.custom-form input[type="date"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

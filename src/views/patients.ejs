@@ -1,0 +1,162 @@
+<%- include("partials/_header") %>
+
+<style>
+  .form-control:valid {
+    border-color: green;
+  }
+
+  .form-control:invalid {
+    border-color: red;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h3>Registro de Paciente</h3>
+    </div>
+    <div class="card-body">
+      <form action="/add" method="POST" class="custom-form" id="registroForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="dni">DNI</label>
+              <input type="number" id="dni" name="dni" placeholder="DNI" class="form-control" autofocus required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="nombres">Nombres</label>
+              <input type="text" id="nombres" name="nombres" placeholder="Nombres" class="form-control" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="apellidos">Apellidos</label>
+              <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="nacimiento">Fecha de Nacimiento</label>
+              <input type="date" id="nacimiento" name="nacimiento" placeholder="Fecha de Nacimiento" class="form-control" value="<%= new Date().toISOString().split('T')[0] %>" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="sexo">Sexo</label>
+              <select id="sexo" name="sexo" class="form-control" required>
+                <option value="">Seleccionar Género</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="celular">Celular</label>
+              <input type="number" id="celular" name="celular" placeholder="Celular" class="form-control" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="correo">Correo</label>
+              <input type="email" id="correo" name="correo" placeholder="Correo" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="direccion">Dirección</label>
+              <input type="text" id="direccion" name="direccion" placeholder="Direccion" class="form-control" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="colesterol">Colesterol</label>
+              <input type="number" id="colesterol" name="colesterol" placeholder="Colesterol" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="glucosa">Glucosa</label>
+              <input type="number" id="glucosa" name="glucosa" placeholder="Glucosa" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="hemoglobina">Hemoglobina</label>
+              <input type="number" id="hemoglobina" name="hemoglobina" placeholder="hemoglobina" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="tipoSeguro">Tipo de Seguro</label>
+              <select id="tipoSeguro" name="tipoSeguro" class="form-control" required>
+                <option value="">Seleccionar tipo de seguro</option>
+                <option value="Seguro">Seguro</option>
+                <option value="SIS">SIS</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info">Guardar Paciente</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('registroForm');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // Evitar el envío automático del formulario
+
+      if (form.checkValidity()) {
+        // Si el formulario es válido, mostrar la alerta
+        Swal.fire({
+          icon: 'success',
+          title: '¡Paciente registrado!',
+          text: 'El paciente se ha registrado correctamente.',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            form.submit(); // Envía el formulario después de que el usuario confirme la alerta
+          }
+        });
+      } else {
+        // Si el formulario no es válido, mostrar un mensaje de error o realizar otras acciones necesarias
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor completa todos los campos requeridos.',
+        });
+      }
+    });
+
+    // Agregar listeners para los campos y actualizar estilos según su validez
+    const inputs = form.querySelectorAll('.form-control');
+    inputs.forEach(input => {
+      input.addEventListener('input', function () {
+        if (input.checkValidity()) {
+          input.classList.remove('is-invalid');
+          input.classList.add('is-valid');
+        } else {
+          input.classList.remove('is-valid');
+          input.classList.add('is-invalid');
+        }
+      });
+    });
+  });
+</script>
+
+<%- include("partials/_footer") %>
